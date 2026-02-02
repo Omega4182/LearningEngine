@@ -26,7 +26,12 @@ namespace LE
 
 		static void DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const glm::vec4& Color);
 		static void DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const glm::vec4& Color);
-		static void DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture);
-		static void DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture);
+		static void DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
+		static void DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
+
+		static void DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const glm::vec4& Color);
+		static void DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const glm::vec4& Color);
+		static void DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
+		static void DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
 	};
 }

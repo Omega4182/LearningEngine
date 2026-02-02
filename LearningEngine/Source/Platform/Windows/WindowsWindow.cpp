@@ -5,6 +5,8 @@
 #include "LE/Events/KeyEvent.h"
 #include "LE/Events/ApplicationEvent.h"
 
+#include "LE/Renderer/Renderer.h"
+
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace LE
@@ -59,6 +61,14 @@ namespace LE
 
 		{
 			LE_PROFILE_SCOPE("glfwCreateWindow")
+
+		#ifdef LE_DEBUG
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+			{
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+			}
+		#endif
+
 			m_Window = glfwCreateWindow(m_Data.Width, m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		}
 

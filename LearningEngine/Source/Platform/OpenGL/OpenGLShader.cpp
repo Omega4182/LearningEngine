@@ -230,6 +230,13 @@ namespace LE
 		UploadUniformInt(Name, Value);
 	}
 
+	void OpenGLShader::SetFloat(const std::string& Name, float Value)
+	{
+		LE_PROFILE_FUNCTION();
+
+		UploadUniformFloat(Name, Value);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& Name, const glm::vec3& Value)
 	{
 		LE_PROFILE_FUNCTION();

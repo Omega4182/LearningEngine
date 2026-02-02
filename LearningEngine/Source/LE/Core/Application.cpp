@@ -38,6 +38,38 @@ namespace LE
 		Renderer::Shutdown();
 	}
 
+	void Application::OnEvent(Event& e)
+	{
+		LE_PROFILE_FUNCTION();
+
+		EventDispatcher dispatcher = EventDispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(LE_BIND(this, &Application::OnWindowCloseCallback));
+		dispatcher.Dispatch<WindowResizeEvent>(LE_BIND(this, &Application::OnWindowResizeCallback));
+
+		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+		{
+			(*it)->OnEvent(e);
+			if (e.IsHandled())
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer(Layer* Layer)
+	{
+		LE_PROFILE_FUNCTION();
+
+		m_LayerStack.PushLayer(Layer);
+	}
+
+	void Application::PushOverlay(Layer* Overlay)
+	{
+		LE_PROFILE_FUNCTION();
+
+		m_LayerStack.PushOverlay(Overlay);
+	}
+
 	void Application::Run()
 	{
 		LE_PROFILE_FUNCTION();
@@ -63,46 +95,14 @@ namespace LE
 			m_ImGuiLayer->Begin();
 			{
 				LE_PROFILE_SCOPE("LayerStack OnImGuiRender")
-				for (Layer* currentLayer : m_LayerStack)
-				{
-					currentLayer->OnImGuiRender();
-				}
+					for (Layer* currentLayer : m_LayerStack)
+					{
+						currentLayer->OnImGuiRender();
+					}
 			}
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
-		}
-	}
-
-	void Application::PushLayer(Layer* Layer)
-	{
-		LE_PROFILE_FUNCTION();
-
-		m_LayerStack.PushLayer(Layer);
-	}
-
-	void Application::PushOverlay(Layer* Overlay)
-	{
-		LE_PROFILE_FUNCTION();
-
-		m_LayerStack.PushOverlay(Overlay);
-	}
-
-	void Application::OnEvent(Event& e)
-	{
-		LE_PROFILE_FUNCTION();
-
-		EventDispatcher dispatcher = EventDispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(LE_BIND(this, &Application::OnWindowCloseCallback));
-		dispatcher.Dispatch<WindowResizeEvent>(LE_BIND(this, &Application::OnWindowResizeCallback));
-
-		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
-		{
-			(*--it)->OnEvent(e);
-			if (e.IsHandled())
-			{
-				break;
-			}
 		}
 	}
 

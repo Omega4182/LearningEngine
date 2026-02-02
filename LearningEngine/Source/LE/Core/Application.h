@@ -8,6 +8,8 @@
 
 #include "LE/ImGui/ImGuiLayer.h"
 
+int main(int argc, char** argv);
+
 namespace LE
 {
 	class Application
@@ -22,8 +24,6 @@ namespace LE
 		Application();
 		virtual ~Application();
 
-		void Run();
-
 		void OnEvent(Event& e);
 
 		void PushLayer(Layer* Layer);
@@ -36,8 +36,12 @@ namespace LE
 
 	private:
 
+		void Run();
+
 		bool OnWindowCloseCallback(const WindowCloseEvent& e);
 		bool OnWindowResizeCallback(const WindowResizeEvent& e);
+
+		friend int ::main(int argc, char** argv);
 
 	private:
 
