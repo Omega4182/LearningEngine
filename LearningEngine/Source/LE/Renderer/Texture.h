@@ -17,6 +17,8 @@ namespace LE
 		virtual void SetData(void* Data, size_t Size) = 0;
 
 		virtual void Bind(uint32_t Slot) const = 0;
+
+		virtual bool operator==(const Texture& Other) const = 0;
 	};
 
 	class Texture2D : public Texture

@@ -7,6 +7,25 @@
 
 namespace LE
 {
+	TSharedPtr<VertexBuffer> VertexBuffer::Create(uint32_t Size)
+	{
+		switch (Renderer::GetAPI())
+		{
+			case RendererAPI::API::None:
+			{
+				LE_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
+				return nullptr;
+			}
+			case RendererAPI::API::OpenGL:
+			{
+				return MakeShared<OpenGLVertexBuffer>(Size);
+			}
+		}
+
+		LE_CORE_ASSERT(false, "Unknown RendererAPI selected!");
+		return nullptr;
+	}
+
 	TSharedPtr<VertexBuffer> VertexBuffer::Create(float* Vertices, uint32_t Size)
 	{
 		switch (Renderer::GetAPI())
@@ -26,7 +45,7 @@ namespace LE
 		return nullptr;
 	}
 
-	TSharedPtr<IndexBuffer> IndexBuffer::Create(uint32_t* Indices, uint32_t Size)
+	TSharedPtr<IndexBuffer> IndexBuffer::Create(uint32_t* Indices, uint32_t Count)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -37,7 +56,7 @@ namespace LE
 			}
 			case RendererAPI::API::OpenGL:
 			{
-				return MakeShared<OpenGLIndexBuffer>(Indices, Size);
+				return MakeShared<OpenGLIndexBuffer>(Indices, Count);
 			}
 		}
 

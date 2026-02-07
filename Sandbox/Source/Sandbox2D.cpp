@@ -30,9 +30,18 @@ void Sandbox2D::OnUpdate(LE::Timestep DeltaTime)
 	LE::RenderCommand::Clear();
 
 	LE::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	LE::Renderer2D::DrawRotatedQuad(glm::vec3(0.f, 0.f, 1.f), glm::vec2(1.f, 1.f), glm::radians(45.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
-	LE::Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 1.f), glm::vec2(0.5f, 0.5f), glm::vec4(0.8f, 1.f, 0.2f, 1.f));
-	LE::Renderer2D::DrawQuad(glm::vec3(0.0f, 0.0f, 0.1f), glm::vec2(10.f, 10.f), m_Texture, 10.f, glm::vec4(1.f, 0.5f, 0.5f, 1.f));
+	//LE::Renderer2D::DrawRotatedQuad(glm::vec3(0.f, 0.f, 1.f), glm::vec2(1.f, 1.f), glm::radians(45.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
+
+	/*for (uint32_t i = 0; i < 100; i++)
+	{
+		uint32_t row = i / 10;
+		uint32_t column = i % 10;
+
+		LE::Renderer2D::DrawQuad(glm::vec3(row * 2.f, column * 2.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(row / 10.f, column / 10.f, row / 10.f, 1.f));
+	}*/
+	LE::Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 0.f), glm::vec2(1.f, 1.f), m_Texture, 20.f, glm::vec4(1.f, 1.f, 1.f, 1.f));
+	LE::Renderer2D::DrawQuad(glm::vec3(0.f, 0.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
+	LE::Renderer2D::DrawQuad(glm::vec3(-5.0f, -5.0f, 0.f), glm::vec2(10.f, 10.f), m_Texture, 10.f, glm::vec4(1.f, 0.5f, 0.5f, 1.f));
 	LE::Renderer2D::EndScene();
 }
 

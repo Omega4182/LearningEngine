@@ -23,6 +23,7 @@ namespace LE
 		virtual void Unbind() const override;
 
 		virtual void SetInt(const std::string& Name, int32_t Value) override;
+		virtual void SetIntArray(const std::string& Name, int32_t* Values, uint32_t Count) override;
 		virtual void SetFloat(const std::string& Name, float Value) override;
 		virtual void SetFloat3(const std::string& Name, const glm::vec3& Value) override;
 		virtual void SetFloat4(const std::string& Name, const glm::vec4& Value) override;
@@ -31,6 +32,7 @@ namespace LE
 		virtual const std::string& GetName() const override { return m_Name; }
 
 		void UploadUniformInt(const std::string& Name, int32_t Integer) const;
+		void UploadUniformIntArray(const std::string& Name, int32_t* Values, uint32_t Count) const;
 
 		void UploadUniformFloat(const std::string& Name, float Value) const;
 		void UploadUniformFloat2(const std::string& Name, const glm::vec2& Value) const;

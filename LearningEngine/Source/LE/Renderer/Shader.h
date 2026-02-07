@@ -17,6 +17,7 @@ namespace LE
 		virtual void Unbind() const = 0;
 
 		virtual void SetInt(const std::string& Name, int32_t Value) = 0;
+		virtual void SetIntArray(const std::string& Name, int32_t* Values, uint32_t Count) = 0;
 		virtual void SetFloat(const std::string& Name, float Value) = 0;
 		virtual void SetFloat3(const std::string& Name, const glm::vec3& Value) = 0;
 		virtual void SetFloat4(const std::string& Name, const glm::vec4& Value) = 0;

@@ -20,6 +20,11 @@ namespace LE
 
 		virtual void Bind(uint32_t Slot) const override;
 
+		virtual bool operator==(const Texture& Other) const override
+		{
+			return static_cast<const OpenGLTexture2D&>(Other).m_RendererId == m_RendererId;
+		}
+
 	private:
 
 		std::string m_Path;

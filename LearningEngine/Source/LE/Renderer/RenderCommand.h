@@ -30,9 +30,9 @@ namespace LE
 			s_RenderAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray)
+		inline static void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0)
 		{
-			s_RenderAPI->DrawIndexed(VertexArray);
+			s_RenderAPI->DrawIndexed(VertexArray, IndexCount);
 		}
 
 	private:

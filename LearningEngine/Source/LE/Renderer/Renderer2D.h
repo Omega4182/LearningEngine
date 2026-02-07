@@ -21,6 +21,7 @@ namespace LE
 
 		static void BeginScene(const OrthographicCamera& Camera);
 		static void EndScene();
+		static void Flush();
 
 		// Primitives
 

@@ -8,21 +8,17 @@ namespace LE
 	{
 	public:
 
+		OpenGLVertexBuffer(uint32_t Size);
 		OpenGLVertexBuffer(float* Vertices, uint32_t Size);
 		virtual ~OpenGLVertexBuffer();
 
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
-		virtual inline const VertexBufferLayout& GetBufferLayout() const override
-		{
-			return m_Layout;
-		}
+		virtual void SetData(const void* Data, uint32_t Size) override;
 
-		virtual void SetLayout(const VertexBufferLayout& Layout) override
-		{
-			m_Layout = Layout;
-		}
+		virtual inline const VertexBufferLayout& GetBufferLayout() const override { return m_Layout; }
+		virtual void SetLayout(const VertexBufferLayout& Layout) override { m_Layout = Layout; }
 
 	private:
 

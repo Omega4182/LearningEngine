@@ -230,6 +230,13 @@ namespace LE
 		UploadUniformInt(Name, Value);
 	}
 
+	void OpenGLShader::SetIntArray(const std::string& Name, int32_t* Values, uint32_t Count)
+	{
+		LE_PROFILE_FUNCTION();
+
+		UploadUniformIntArray(Name, Values, Count);
+	}
+
 	void OpenGLShader::SetFloat(const std::string& Name, float Value)
 	{
 		LE_PROFILE_FUNCTION();
@@ -262,6 +269,12 @@ namespace LE
 	{
 		int32_t pos = glGetUniformLocation(m_RendererId, Name.c_str());
 		glUniform1i(pos, Integer);
+	}
+
+	void OpenGLShader::UploadUniformIntArray(const std::string& Name, int32_t* Values, uint32_t Count) const
+	{
+		int32_t pos = glGetUniformLocation(m_RendererId, Name.c_str());
+		glUniform1iv(pos, Count, Values);
 	}
 
 	void OpenGLShader::UploadUniformFloat(const std::string& Name, float Value) const

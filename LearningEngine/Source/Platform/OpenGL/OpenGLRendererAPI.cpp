@@ -61,8 +61,15 @@ namespace LE
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGLRendererAPI::DrawIndexed(const TSharedPtr<VertexArray>& VertexArray)
+	void OpenGLRendererAPI::DrawIndexed(const TSharedPtr<VertexArray>& VertexArray, uint32_t IndexCount)
 	{
-		glDrawElements(GL_TRIANGLES, VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		if (IndexCount == 0)
+		{
+			glDrawElements(GL_TRIANGLES, VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+		}
+		else
+		{
+			glDrawElements(GL_TRIANGLES, IndexCount, GL_UNSIGNED_INT, nullptr);
+		}
 	}
 }
