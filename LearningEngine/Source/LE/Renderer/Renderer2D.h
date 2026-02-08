@@ -8,11 +8,9 @@ namespace LE
 	class Renderer2D
 	{
 	protected:
-
 		Renderer2D() = default;
 
 	public:
-
 		Renderer2D(const Renderer2D&) = delete;
 		Renderer2D& operator=(const Renderer2D&) = delete;
 
@@ -34,5 +32,20 @@ namespace LE
 		static void DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const glm::vec4& Color);
 		static void DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
 		static void DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor = 1.f, const glm::vec4& TintColor = glm::vec4(1.f));
+
+	private:
+		static void ResetBatchData();
+
+	public:
+		struct Statistics
+		{
+			uint32_t DrawCalls = 0;
+			uint32_t QuadCount = 0;
+
+			uint32_t GetTotalVertexCount() const { return QuadCount * 4; }
+			uint32_t GetTotalIndexCount() const { return QuadCount * 6; }
+		};
+		static Statistics GetStats();
+		static void ResetStats();
 	};
 }
