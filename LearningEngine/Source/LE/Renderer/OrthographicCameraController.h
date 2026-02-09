@@ -17,6 +17,8 @@ namespace LE
 		void OnUpdate(Timestep DeltaTime);
 		void OnEvent(Event& e);
 
+		void OnResize(float Width, float Height);
+
 		inline OrthographicCamera& GetCamera() { return m_Camera; }
 		inline const OrthographicCamera& GetCamera() const { return m_Camera; }
 

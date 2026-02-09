@@ -40,6 +40,12 @@ namespace LE
 		dispatcher.Dispatch<WindowResizeEvent>(LE_BIND(this, &OrthographicCameraController::OnWindowResized));
 	}
 
+	void OrthographicCameraController::OnResize(float Width, float Height)
+	{
+		m_AspectRatio = Width / Height;
+		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+	}
+
 	bool OrthographicCameraController::OnMouseScroll(MouseScrolledEvent& e)
 	{
 		LE_PROFILE_FUNCTION();
@@ -54,8 +60,7 @@ namespace LE
 	{
 		LE_PROFILE_FUNCTION();
 
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+		OnResize(static_cast<float>(e.GetWidth()), static_cast<float>(e.GetHeight()));
 		return false;
 	}
 }

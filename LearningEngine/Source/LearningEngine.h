@@ -25,6 +25,7 @@
 
 #include "LE/Renderer/Buffers.h"
 #include "LE/Renderer/Shader.h"
+#include "LE/Renderer/Framebuffer.h"
 #include "LE/Renderer/Texture.h"
 #include "LE/Renderer/VertexArray.h"
 

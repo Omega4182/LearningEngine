@@ -111,6 +111,9 @@
     <ClInclude Include="Source\LE\Renderer\Buffers.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Renderer\Framebuffer.h">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Renderer\GraphicsContext.h">
       <Filter>Source\LE\Renderer</Filter>
     </ClInclude>
@@ -154,6 +157,9 @@
       <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1454,6 +1460,9 @@
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Renderer\Framebuffer.cpp">
+      <Filter>Source\LE\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
@@ -1494,6 +1503,9 @@
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Source\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>Source\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\OpenGLRendererAPI.cpp">

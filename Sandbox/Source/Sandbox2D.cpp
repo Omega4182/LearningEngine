@@ -58,19 +58,20 @@ void Sandbox2D::OnImGuiRender()
 {
 	LE_PROFILE_FUNCTION();
 
-	ImGui::Begin("Settings");
+    ImGui::Begin("Settings");
 
-	ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
+    ImGui::Text("FPS: %.1f", ImGui::GetIO().Framerate);
 
-	LE::Renderer2D::Statistics Stats = LE::Renderer2D::GetStats();
-	ImGui::Text("Renderer 2D Stats:");
-	ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
-	ImGui::Text("Quads count: %d", Stats.QuadCount);
-	ImGui::Text("Vertices count: %d", Stats.GetTotalVertexCount());
-	ImGui::Text("Indices count: %d", Stats.GetTotalIndexCount());
+    LE::Renderer2D::Statistics Stats = LE::Renderer2D::GetStats();
+    ImGui::Text("Renderer 2D Stats:");
+    ImGui::Text("Draw Calls: %d", Stats.DrawCalls);
+    ImGui::Text("Quads count: %d", Stats.QuadCount);
+    ImGui::Text("Vertices count: %d", Stats.GetTotalVertexCount());
+    ImGui::Text("Indices count: %d", Stats.GetTotalIndexCount());
 
-	ImGui::ColorPicker4("SquareColor", &m_SquareColor[0]);
-	ImGui::End();
+    ImGui::ColorPicker4("SquareColor", &m_SquareColor[0]);
+
+    ImGui::End();
 }
 
 void Sandbox2D::OnEvent(LE::Event& e)

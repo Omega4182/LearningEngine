@@ -15,6 +15,7 @@ namespace LE
 
 		virtual uint32_t GetWidth() const override { return m_Width; }
 		virtual uint32_t GetHeight() const override { return m_Height; }
+		virtual uint32_t GetRendererId() const override { return m_RendererId; }
 
 		virtual void SetData(void* Data, size_t Size) override;
 

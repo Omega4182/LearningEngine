@@ -29,10 +29,9 @@ namespace LE
 		void PushLayer(Layer* Layer);
 		void PushOverlay(Layer* Overlay);
 
-		inline Window& GetWindow() const
-		{
-			return *m_Window;
-		}
+		void Close();
+
+		inline Window& GetWindow() const { return *m_Window; }
 
 	private:
 

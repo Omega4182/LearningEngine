@@ -60,6 +60,7 @@
 
 namespace LE
 {
+// ------
 	template<typename T>
 	using TUniquePtr = std::unique_ptr<T>;
 
@@ -87,4 +88,7 @@ namespace LE
 		return std::weak_ptr<T>(std::forward<Args>(args)...);
 	}
 
+// ------
+
+	enum {INDEX_NONE = -1 };
 }

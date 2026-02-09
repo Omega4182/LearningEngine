@@ -16,6 +16,7 @@ namespace LE
 		};
 
 	public:
+		virtual ~RendererAPI() = default;
 
 		virtual void Init() = 0;
 

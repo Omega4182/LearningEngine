@@ -168,6 +168,7 @@
     <ClInclude Include="Source\LE\Events\MouseEvent.h" />
     <ClInclude Include="Source\LE\ImGui\ImGuiLayer.h" />
     <ClInclude Include="Source\LE\Renderer\Buffers.h" />
+    <ClInclude Include="Source\LE\Renderer\Framebuffer.h" />
     <ClInclude Include="Source\LE\Renderer\GraphicsContext.h" />
     <ClInclude Include="Source\LE\Renderer\OrthographicCamera.h" />
     <ClInclude Include="Source\LE\Renderer\OrthographicCameraController.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="Source\LearningEngine.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="Source\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLTexture.h" />
@@ -617,6 +619,7 @@
     <ClCompile Include="Source\LE\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="Source\LE\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="Source\LE\Renderer\Buffers.cpp" />
+    <ClCompile Include="Source\LE\Renderer\Framebuffer.cpp" />
     <ClCompile Include="Source\LE\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="Source\LE\Renderer\OrthographicCameraController.cpp" />
@@ -633,6 +636,7 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="Source\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLTexture.cpp" />

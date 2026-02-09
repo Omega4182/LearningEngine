@@ -70,6 +70,11 @@ namespace LE
 		m_LayerStack.PushOverlay(Overlay);
 	}
 
+	void Application::Close()
+	{
+		bIsRunning = false;
+	}
+
 	void Application::Run()
 	{
 		LE_PROFILE_FUNCTION();
@@ -94,11 +99,11 @@ namespace LE
 
 			m_ImGuiLayer->Begin();
 			{
-				LE_PROFILE_SCOPE("LayerStack OnImGuiRender")
-					for (Layer* currentLayer : m_LayerStack)
-					{
-						currentLayer->OnImGuiRender();
-					}
+				LE_PROFILE_SCOPE("LayerStack OnImGuiRender");
+				for (Layer* currentLayer : m_LayerStack)
+				{
+					currentLayer->OnImGuiRender();
+				}
 			}
 			m_ImGuiLayer->End();
 

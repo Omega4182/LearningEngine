@@ -1,6 +1,6 @@
 workspace "LearningEngine"
 	architecture "x86_64"
-	startproject "Sandbox"
+	startproject "LearningEditor"
 
 	configurations
 	{ 
@@ -106,6 +106,56 @@ project "LearningEngine"
 
 project "Sandbox"
 	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+	buildoptions "/utf-8"
+
+	targetdir ("Binaries/" .. outputdir .. "/%{prj.name}")
+	objdir ("Intermediate/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/Source/**.h", 
+		"%{prj.name}/Source/**.cpp"
+	}
+
+	includedirs
+	{
+		"LearningEngine/ThirdParty/spdlog/include",
+		"LearningEngine/Source",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"LearningEngine"
+	}
+	
+	filter "system:windows"
+
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		defines "LE_DEBUG"
+		runtime "Debug"
+		symbols "on"
+		
+	filter "configurations:Release"
+		defines "LE_RELEASE"
+		runtime "Release"
+		optimize "on"
+		
+	filter "configurations:Distribution"
+		defines "LE_DISTRIBUTION"
+		runtime "Release"
+		optimize "on"
+
+
+project "LearningEditor"
+	location "LearningEditor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
