@@ -15,13 +15,15 @@ namespace LE
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
+		virtual void OnEvent(Event& Event) override;
 
 		void Begin();
 		void End();
 
+		void SetBlockEvents(bool bBlockEvents) { m_BlockEvents = bBlockEvents; }
+
 	private:
-
 		float m_Time = 0.f;
-
+		bool m_BlockEvents = true;
 	};
 }

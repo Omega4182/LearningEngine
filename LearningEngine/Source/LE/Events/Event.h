@@ -32,33 +32,20 @@ namespace LE
 
 	class Event
 	{
-		friend class EventDispatcher;
-
 	public:
-
 		virtual ~Event() = default;
 
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int32_t GetCategoryFlags() const = 0;
-		virtual std::string ToString() const
-		{
-			return GetName();
-		}
+		virtual std::string ToString() const { return GetName(); }
 
-		inline bool IsInCategory(EventCategory Category)
-		{
-			return GetCategoryFlags() & Category;
-		}
+		inline bool IsInCategory(EventCategory Category) { return GetCategoryFlags() & Category; }
+		inline bool IsHandled() const { return bHandled; }
 
-		inline bool IsHandled() const
-		{
-			return m_Handled;
-		}
+	public:
 
-	protected:
-
-		bool m_Handled = false;
+		bool bHandled = false;
 	};
 
 	class EventDispatcher
@@ -75,7 +62,7 @@ namespace LE
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(static_cast<T&>(m_Event));
+				m_Event.bHandled = func(static_cast<T&>(m_Event));
 				return true;
 			}
 

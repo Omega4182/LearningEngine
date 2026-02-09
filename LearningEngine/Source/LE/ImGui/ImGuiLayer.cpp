@@ -56,6 +56,16 @@ namespace LE
 		ImGui::DestroyContext();
 	}
 
+	void ImGuiLayer::OnEvent(Event& Event)
+	{
+		if (m_BlockEvents)
+		{
+			ImGuiIO& io = ImGui::GetIO();
+			Event.bHandled |= Event.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+			Event.bHandled |= Event.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+		}
+	}
+
 	void ImGuiLayer::Begin()
 	{
 		LE_PROFILE_FUNCTION();

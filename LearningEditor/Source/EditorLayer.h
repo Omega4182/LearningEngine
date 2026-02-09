@@ -25,6 +25,8 @@ namespace LE
 		TSharedPtr<Texture2D> m_Texture;
 		TSharedPtr<Framebuffer> m_Framebuffer;
 
+		bool m_ViewportFocused = false;
+		bool m_ViewportHovered = false;
 		OrthographicCameraController m_CameraController;
 
 		glm::vec2 m_ViewportSize = glm::vec2(0.f, 0.f);
