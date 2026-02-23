@@ -25,6 +25,8 @@ namespace LE
 		TSharedPtr<Texture2D> m_Texture;
 		TSharedPtr<Framebuffer> m_Framebuffer;
 
+		TSharedPtr<Scene> m_ActiveScene;
+
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;
 		OrthographicCameraController m_CameraController;

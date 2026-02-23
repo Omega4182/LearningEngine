@@ -23,6 +23,7 @@ IncludeDir["Glad"] = "LearningEngine/ThirdParty/Glad/include"
 IncludeDir["ImGui"] = "LearningEngine/ThirdParty/ImGui"
 IncludeDir["glm"] = "LearningEngine/ThirdParty/glm"
 IncludeDir["stb_image"] = "LearningEngine/ThirdParty/stb_image"
+IncludeDir["ENTT"] = "LearningEngine/ThirdParty/ENTT/include"
 
 group "Dependencies"
 
@@ -53,7 +54,8 @@ project "LearningEngine"
 		"%{prj.name}/ThirdParty/stb_image/**.h",
 		"%{prj.name}/ThirdParty/stb_image/**.cpp",
 		"%{prj.name}/ThirdParty/glm/glm/**.hpp",
-		"%{prj.name}/ThirdParty/glm/glm/**.inl"
+		"%{prj.name}/ThirdParty/glm/glm/**.inl",
+		"%{prj.name}/ThirdParty/ENTT/**.hpp",
 	}
 
 	includedirs
@@ -64,7 +66,8 @@ project "LearningEngine"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.ENTT}"
 	}
 
 	links
@@ -126,7 +129,8 @@ project "Sandbox"
 		"LearningEngine/ThirdParty/spdlog/include",
 		"LearningEngine/Source",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.ENTT}"
 	}
 
 	links
@@ -176,7 +180,8 @@ project "LearningEditor"
 		"LearningEngine/ThirdParty/spdlog/include",
 		"LearningEngine/Source",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.ENTT}"
 	}
 
 	links

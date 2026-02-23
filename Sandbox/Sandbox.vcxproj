@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;..\LearningEngine\ThirdParty\ENTT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;..\LearningEngine\ThirdParty\ENTT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -122,7 +122,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>LE_DISTRIBUTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\LearningEngine\ThirdParty\spdlog\include;..\LearningEngine\Source;..\LearningEngine\ThirdParty\ImGui;..\LearningEngine\ThirdParty\glm;..\LearningEngine\ThirdParty\ENTT\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

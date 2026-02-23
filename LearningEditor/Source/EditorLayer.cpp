@@ -20,6 +20,11 @@ namespace LE
         frameSpec.Width = 1280;
         frameSpec.Height = 720;
         m_Framebuffer = Framebuffer::Create(frameSpec);
+
+        m_ActiveScene = MakeShared<Scene>();
+
+        Entity SquadEntity = m_ActiveScene->CreateEntity();
+        SquadEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.f, 1.f, 0.f, 1.f));
     }
 
     void EditorLayer::OnDetach()
@@ -30,6 +35,17 @@ namespace LE
     void EditorLayer::OnUpdate(Timestep DeltaTime)
     {
         LE_PROFILE_FUNCTION();
+
+        // Resize
+        {
+            FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+            if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
+                (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+            {
+                m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+                m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+            }
+        }
 
         if (m_ViewportFocused)
         {
@@ -43,6 +59,7 @@ namespace LE
         RenderCommand::Clear();
 
         Renderer2D::BeginScene(m_CameraController.GetCamera());
+        m_ActiveScene->OnUpdate(DeltaTime);
         //Renderer2D::DrawRotatedQuad(glm::vec3(0.f, 0.f, 1.f), glm::vec2(1.f, 1.f), glm::radians(45.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
 
         /*for (uint32_t i = 0; i < 100; i++)
@@ -52,7 +69,7 @@ namespace LE
 
             Renderer2D::DrawQuad(glm::vec3(row * 2.f, column * 2.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(row / 10.f, column / 10.f, row / 10.f, 1.f));
         }*/
-        Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 0.f), glm::vec2(1.f, 1.f), m_Texture, 20.f, glm::vec4(1.f, 1.f, 1.f, 1.f));
+        /*Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 0.f), glm::vec2(1.f, 1.f), m_Texture, 20.f, glm::vec4(1.f, 1.f, 1.f, 1.f));
         Renderer2D::DrawQuad(glm::vec3(0.f, 0.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
 
         static float TestRot = 0.f;
@@ -60,7 +77,7 @@ namespace LE
         Renderer2D::DrawRotatedQuad(glm::vec3(1.2f, 1.2f, 0.f), glm::vec2(1.f, 1.f), TestRot, glm::vec4(0.5f, 0.5f, 1.f, 1.f));
         Renderer2D::DrawRotatedQuad(glm::vec3(-1.2f, -1.2f, 0.f), glm::vec2(1.f, 1.f), TestRot, glm::vec4(0.5f, 0.5f, 1.f, 1.f));
 
-        Renderer2D::DrawRotatedQuad(glm::vec3(0.0f, 0.0f, 0.f), glm::vec2(10.f, 10.f), 45.f, m_Texture, 10.f, glm::vec4(1.f, 1.f, 1.f, 1.f));
+        Renderer2D::DrawRotatedQuad(glm::vec3(0.0f, 0.0f, 0.f), glm::vec2(10.f, 10.f), 45.f, m_Texture, 10.f, glm::vec4(1.f, 1.f, 1.f, 1.f));*/
 
         Renderer2D::EndScene();
 
@@ -154,13 +171,8 @@ namespace LE
         Application::Get().GetImGuiLayer()->SetBlockEvents(m_ViewportFocused == false || m_ViewportHovered == false);
 
         ImVec2 ViewportSize = ImGui::GetContentRegionAvail();
-        if (m_ViewportSize != *(reinterpret_cast<glm::vec2*>(&ViewportSize)))
-        {
-            m_ViewportSize = glm::vec2(ViewportSize.x, ViewportSize.y);
-            m_Framebuffer->Resize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+        m_ViewportSize = glm::vec2(ViewportSize.x, ViewportSize.y);
 
-            m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-        }
         uint32_t TextureId = m_Framebuffer->GetColorAttachmentRendererId();
         ImGui::Image(TextureId, ViewportSize, ImVec2(0, 1), ImVec2(1, 0));
         ImGui::End();

@@ -34,6 +34,12 @@
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{107145F9-FC28-8746-6530-60A251072237}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\ENTT">
+      <UniqueIdentifier>{DA47204C-46D3-8D10-4FE4-1005BBEEE910}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ENTT\include">
+      <UniqueIdentifier>{4DA9FC1B-B9E0-44B3-C2EA-A8D62EA16BAC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ThirdParty\glm">
       <UniqueIdentifier>{5F03D311-4BD1-C617-3465-373E20D2A27C}</UniqueIdentifier>
     </Filter>
@@ -176,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="Source\Platform\Windows\WindowsWindow.h">
       <Filter>Source\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\ENTT\include\entt.hpp">
+      <Filter>ThirdParty\ENTT\include</Filter>
     </ClInclude>
     <ClInclude Include="ThirdParty\glm\glm\common.hpp">
       <Filter>ThirdParty\glm\glm</Filter>
@@ -1434,6 +1443,9 @@
     <ClInclude Include="ThirdParty\stb_image\stb_image.h">
       <Filter>ThirdParty\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Scene\Scene.h" />
+    <ClInclude Include="Source\LE\Scene\Components.h" />
+    <ClInclude Include="Source\LE\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Core\Application.cpp">
@@ -1526,5 +1538,7 @@
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
       <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Scene\Scene.cpp" />
+    <ClCompile Include="Source\LE\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

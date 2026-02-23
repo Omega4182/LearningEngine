@@ -18,6 +18,10 @@
 #include "imgui.h"
 #include "LE/ImGui/ImGuiLayer.h"
 
+#include "LE/Scene/Scene.h"
+#include "LE/Scene/Entity.h"
+#include "LE/Scene/Components.h"
+
 // --Rendering------------------
 #include "LE/Renderer/Renderer.h"
 #include "LE/Renderer/Renderer2D.h"

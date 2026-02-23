@@ -11,9 +11,9 @@ namespace LE
 {
 	struct QuadVertex
 	{
-		glm::vec3 Position;
-		glm::vec4 Color;
-		glm::vec2 TexCoord;
+		glm::vec3 Position = glm::vec3(1.f);
+		glm::vec4 Color = glm::vec4(1.f);
+		glm::vec2 TexCoord = glm::vec2(1.f);
 		float TexIndex = 0.f;
 		float TilingFactor = 0.f;
 	};
@@ -47,8 +47,6 @@ namespace LE
 
 	void Renderer2D::Init()
 	{
-		LE_PROFILE_FUNCTION();
-
 		s_Data.VertexArray = VertexArray::Create();
 
 		s_Data.VertexBuffer = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
@@ -113,15 +111,11 @@ namespace LE
 
 	void Renderer2D::Shutdown()
 	{
-		LE_PROFILE_FUNCTION();
-
 		delete[] s_Data.QuadVertexBufferBase;
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& Camera)
 	{
-		LE_PROFILE_FUNCTION();
-
 		s_Data.TextureShader->Bind();
 		s_Data.TextureShader->SetMat4("u_ViewProjection", Camera.GetViewProjectionMatrix());
 
@@ -130,8 +124,6 @@ namespace LE
 
 	void Renderer2D::EndScene()
 	{
-		LE_PROFILE_FUNCTION();
-
 		if (s_Data.QuadIndexCount == 0)
 		{
 			return;
@@ -165,34 +157,10 @@ namespace LE
 
 	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const glm::vec4& Color)
 	{
-		LE_PROFILE_FUNCTION();
-
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
-		{
-			Flush();
-		}
-
-		const float TextureIndex = 0.f; // White texture
-		const float TilingFactor = 1.f;
-
 		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
 			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
 
-		constexpr uint32_t VertexCount = 4;
-
-		for (uint32_t i = 0; i < VertexCount; i++)
-		{
-			s_Data.QuadVertexBufferPtr->Position = Transform * s_Data.QuadVertexPositions[i];
-			s_Data.QuadVertexBufferPtr->Color = Color;
-			s_Data.QuadVertexBufferPtr->TexCoord = s_Data.QuadTextureCoord[i];
-			s_Data.QuadVertexBufferPtr->TexIndex = TextureIndex;
-			s_Data.QuadVertexBufferPtr->TilingFactor = TilingFactor;
-			s_Data.QuadVertexBufferPtr++;
-		}
-
-		s_Data.QuadIndexCount += 6;
-
-		s_Data.Stats.QuadCount++;
+		DrawQuad(Transform, Color);
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
@@ -202,56 +170,10 @@ namespace LE
 
 	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
-		LE_PROFILE_FUNCTION();
-
-		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
-		{
-			Flush();
-		}
-
-		float TextureIndex = 0.f;
-
-		for (uint32_t i = 1; i < s_Data.TextureSlotIndex; i++)
-		{
-			// Getting operator== overload to work
-			// TODO: Remove this, looks ugly
-			if (*s_Data.TextureSlots[i].get() == *Texture.get())
-			{
-				TextureIndex = static_cast<float>(i);
-				break;
-			}
-		}
-
-		if (TextureIndex == 0.f)
-		{
-			if (s_Data.TextureSlotIndex >= s_Data.MaxTextureSlots)
-			{
-				Flush();
-			}
-
-			TextureIndex = static_cast<float>(s_Data.TextureSlotIndex);
-			s_Data.TextureSlots[s_Data.TextureSlotIndex] = Texture;
-			s_Data.TextureSlotIndex++;
-		}
-
 		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
 			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
 
-		constexpr uint32_t VertexCount = 4;
-
-		for (uint32_t i = 0; i < VertexCount; i++)
-		{
-			s_Data.QuadVertexBufferPtr->Position = Transform * s_Data.QuadVertexPositions[i];
-			s_Data.QuadVertexBufferPtr->Color = TintColor;
-			s_Data.QuadVertexBufferPtr->TexCoord = s_Data.QuadTextureCoord[i];
-			s_Data.QuadVertexBufferPtr->TexIndex = TextureIndex;
-			s_Data.QuadVertexBufferPtr->TilingFactor = TilingFactor;
-			s_Data.QuadVertexBufferPtr++;
-		}
-
-		s_Data.QuadIndexCount += 6;
-
-		s_Data.Stats.QuadCount++;
+		DrawQuad(Transform, Texture, TilingFactor, TintColor);
 	}
 
 	void Renderer2D::DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const glm::vec4& Color)
@@ -261,8 +183,29 @@ namespace LE
 
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const glm::vec4& Color)
 	{
-		LE_PROFILE_FUNCTION();
+		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
+			* glm::rotate(glm::mat4(1.f), glm::radians(Rotation), glm::vec3(0.f, 0.f, 1.f))
+			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
 
+		DrawQuad(Transform, Color);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	{
+		DrawRotatedQuad(glm::vec3(Position, 0.f), Size, Rotation, Texture, TilingFactor, TintColor);
+	}
+
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	{
+		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
+			* glm::rotate(glm::mat4(1.f), glm::radians(Rotation), glm::vec3(0.f, 0.f, 1.f))
+			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
+
+		DrawQuad(Transform, Texture, TilingFactor, TintColor);
+	}
+
+	void Renderer2D::DrawQuad(const glm::mat4& Transform, const glm::vec4& Color)
+	{
 		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
 		{
 			Flush();
@@ -270,11 +213,6 @@ namespace LE
 
 		const float TextureIndex = 0.f; // White texture
 		const float TilingFactor = 1.f;
-
-		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
-			* glm::rotate(glm::mat4(1.f), glm::radians(Rotation), glm::vec3(0.f, 0.f, 1.f))
-			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
-
 		constexpr uint32_t VertexCount = 4;
 
 		for (uint32_t i = 0; i < VertexCount; i++)
@@ -292,15 +230,8 @@ namespace LE
 		s_Data.Stats.QuadCount++;
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawQuad(const glm::mat4& Transform, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
-		DrawRotatedQuad(glm::vec3(Position, 0.f), Size, Rotation, Texture, TilingFactor, TintColor);
-	}
-
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
-	{
-		LE_PROFILE_FUNCTION();
-
 		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
 		{
 			Flush();
@@ -330,10 +261,6 @@ namespace LE
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = Texture;
 			s_Data.TextureSlotIndex++;
 		}
-
-		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
-			* glm::rotate(glm::mat4(1.f), glm::radians(Rotation), glm::vec3(0.f, 0.f, 1.f))
-			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
 
 		constexpr uint32_t VertexCount = 4;
 
