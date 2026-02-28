@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	TSharedPtr<Texture2D> Texture2D::Create(uint32_t Width, uint32_t Height)
+	SharedPtr<Texture2D> Texture2D::Create(uint32_t Width, uint32_t Height)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -26,7 +26,7 @@ namespace LE
 		return nullptr;
 	}
 
-	TSharedPtr<Texture2D> Texture2D::Create(const std::string& Path)
+	SharedPtr<Texture2D> Texture2D::Create(const std::string& Path)
 	{
 		switch (Renderer::GetAPI())
 		{

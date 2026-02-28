@@ -25,16 +25,16 @@ namespace LE
 		static const uint32_t MaxIndices = MaxQuads * 6;
 		static const uint32_t MaxTextureSlots = 32; // TODO: Analyze GPU for this
 
-		TSharedPtr<VertexArray> VertexArray;
-		TSharedPtr<VertexBuffer> VertexBuffer;
-		TSharedPtr<Shader> TextureShader;
-		TSharedPtr<Texture2D> WhiteTexture;
+		SharedPtr<VertexArray> VertexArray;
+		SharedPtr<VertexBuffer> VertexBuffer;
+		SharedPtr<Shader> TextureShader;
+		SharedPtr<Texture2D> WhiteTexture;
 
 		uint32_t QuadIndexCount = 0;
 		QuadVertex* QuadVertexBufferBase = nullptr;
 		QuadVertex* QuadVertexBufferPtr = nullptr;
 
-		std::array<TSharedPtr<Texture2D>, MaxTextureSlots> TextureSlots;
+		std::array<SharedPtr<Texture2D>, MaxTextureSlots> TextureSlots;
 		uint32_t TextureSlotIndex = 1; // 0 = white texture
 
 		glm::vec4 QuadVertexPositions[4];
@@ -78,7 +78,7 @@ namespace LE
 			IndexOffset += 4;
 		}
 
-		TSharedPtr<IndexBuffer> indexBuffer = IndexBuffer::Create(QuadIndices, s_Data.MaxIndices);
+		SharedPtr<IndexBuffer> indexBuffer = IndexBuffer::Create(QuadIndices, s_Data.MaxIndices);
 		s_Data.VertexArray->SetIndexBuffer(indexBuffer);
 		delete[] QuadIndices;
 
@@ -163,12 +163,12 @@ namespace LE
 		DrawQuad(Transform, Color);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawQuad(const glm::vec2& Position, const glm::vec2& Size, const SharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
 		DrawQuad(glm::vec3(Position, 0.f), Size, Texture, TilingFactor, TintColor);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawQuad(const glm::vec3& Position, const glm::vec2& Size, const SharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
 		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
 			* glm::scale(glm::mat4(1.f), glm::vec3(Size, 1.f));
@@ -190,12 +190,12 @@ namespace LE
 		DrawQuad(Transform, Color);
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawRotatedQuad(const glm::vec2& Position, const glm::vec2& Size, float Rotation, const SharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
 		DrawRotatedQuad(glm::vec3(Position, 0.f), Size, Rotation, Texture, TilingFactor, TintColor);
 	}
 
-	void Renderer2D::DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawRotatedQuad(const glm::vec3& Position, const glm::vec2& Size, float Rotation, const SharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
 		glm::mat4 Transform = glm::translate(glm::mat4(1.f), Position)
 			* glm::rotate(glm::mat4(1.f), glm::radians(Rotation), glm::vec3(0.f, 0.f, 1.f))
@@ -230,7 +230,7 @@ namespace LE
 		s_Data.Stats.QuadCount++;
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& Transform, const TSharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
+	void Renderer2D::DrawQuad(const glm::mat4& Transform, const SharedPtr<Texture2D>& Texture, float TilingFactor, const glm::vec4& TintColor)
 	{
 		if (s_Data.QuadIndexCount >= s_Data.MaxIndices)
 		{
@@ -243,7 +243,7 @@ namespace LE
 		{
 			// Getting operator== overload to work
 			// TODO: Remove this, looks ugly
-			if (*s_Data.TextureSlots[i].get() == *Texture.get())
+			if (*s_Data.TextureSlots[i].Get() == *Texture.Get())
 			{
 				TextureIndex = static_cast<float>(i);
 				break;

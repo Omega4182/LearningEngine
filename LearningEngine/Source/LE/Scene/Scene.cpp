@@ -21,7 +21,7 @@ namespace LE
 		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 		for (auto& entity : group)
 		{
-			auto&[Transform, SpriteRenderer] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+			auto [Transform, SpriteRenderer] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 
 			Renderer2D::DrawQuad(Transform, SpriteRenderer.Color);
 		}

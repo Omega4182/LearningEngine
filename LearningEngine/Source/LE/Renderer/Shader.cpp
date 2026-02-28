@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	TSharedPtr<Shader> Shader::Create(const std::string& FilePath)
+	SharedPtr<Shader> Shader::Create(const std::string& FilePath)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -26,7 +26,7 @@ namespace LE
 		return nullptr;
 	}
 
-	TSharedPtr<Shader> Shader::Create(const std::string& Name, const std::string& VertexShader, const std::string& FragmentShader)
+	SharedPtr<Shader> Shader::Create(const std::string& Name, const std::string& VertexShader, const std::string& FragmentShader)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -45,21 +45,21 @@ namespace LE
 		return nullptr;
 	}
 
-	void ShaderLibrary::Add(const TSharedPtr<Shader>& Shader)
+	void ShaderLibrary::Add(const SharedPtr<Shader>& Shader)
 	{
 		const std::string& shaderName = Shader->GetName();
 		LE_CORE_ASSERT(!Exists(shaderName), "Shader already exists");
 		m_Shaders[shaderName] = Shader;
 	}
 
-	TSharedPtr<Shader> ShaderLibrary::Load(const std::string& FilePath)
+	SharedPtr<Shader> ShaderLibrary::Load(const std::string& FilePath)
 	{
-		TSharedPtr<Shader> shader = Shader::Create(FilePath);
+		SharedPtr<Shader> shader = Shader::Create(FilePath);
 		Add(shader);
 		return shader;
 	}
 
-	TSharedPtr<Shader> ShaderLibrary::Get(const std::string& Name)
+	SharedPtr<Shader> ShaderLibrary::Get(const std::string& Name)
 	{
 		LE_CORE_ASSERT(Exists(Name), "Could not find shader with a given name");
 		return m_Shaders[Name];

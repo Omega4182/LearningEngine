@@ -5,6 +5,40 @@
 
 namespace LE
 {
+    class TestShared : public SharedFromThis
+    {
+    public:
+        TestShared()
+        {
+            LE_INFO("Shared created");
+        }
+
+        virtual ~TestShared()
+        {
+            LE_INFO("Shared destroyed");
+        }
+
+    private:
+        uint32_t some_info = 0;
+    };
+
+    class TestSharedChild : public TestShared
+    {
+    public:
+        TestSharedChild()
+        {
+            LE_INFO("Shared Child created");
+        }
+
+        virtual ~TestSharedChild()
+        {
+            LE_INFO("Shared Child destroyed");
+        }
+
+    private:
+        uint32_t some_info_child = 0;
+    };
+
     EditorLayer::EditorLayer()
         : Layer("EditorLayer"), m_CameraController(1280.f / 720.f)
     {
@@ -23,8 +57,13 @@ namespace LE
 
         m_ActiveScene = MakeShared<Scene>();
 
-        Entity SquadEntity = m_ActiveScene->CreateEntity();
-        SquadEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.f, 1.f, 0.f, 1.f));
+        Entity SquareEntity = m_ActiveScene->CreateEntity();
+        SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.f, 1.f, 0.f, 1.f));
+
+        //SharedPtr<TestShared> NewTestShared = MakeShared<TestShared>();
+        //SharedPtr<TestShared> NewTestShared1 = NewTestShared;
+
+        //NewTestShared = SharedPtr<TestShared>(new TestShared());
     }
 
     void EditorLayer::OnDetach()

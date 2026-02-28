@@ -84,7 +84,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -110,7 +110,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -137,7 +137,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
@@ -158,6 +158,7 @@
     <ClInclude Include="Source\LE\Core\Layer.h" />
     <ClInclude Include="Source\LE\Core\LayerStack.h" />
     <ClInclude Include="Source\LE\Core\Log.h" />
+    <ClInclude Include="Source\LE\Core\Memory\SharedPtr.h" />
     <ClInclude Include="Source\LE\Core\MouseButtonCodes.h" />
     <ClInclude Include="Source\LE\Core\Timestep.h" />
     <ClInclude Include="Source\LE\Core\Window.h" />
@@ -180,11 +181,11 @@
     <ClInclude Include="Source\LE\Renderer\Texture.h" />
     <ClInclude Include="Source\LE\Renderer\VertexArray.h" />
     <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h" />
-    <ClInclude Include="Source\LEpch.h" />
-    <ClInclude Include="Source\LearningEngine.h" />
     <ClInclude Include="Source\LE\Scene\Components.h" />
     <ClInclude Include="Source\LE\Scene\Entity.h" />
     <ClInclude Include="Source\LE\Scene\Scene.h" />
+    <ClInclude Include="Source\LEpch.h" />
+    <ClInclude Include="Source\LearningEngine.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -634,11 +635,11 @@
     <ClCompile Include="Source\LE\Renderer\Texture.cpp" />
     <ClCompile Include="Source\LE\Renderer\VertexArray.cpp" />
     <ClCompile Include="Source\LE\Renderer\VertexBufferLayout.cpp" />
+    <ClCompile Include="Source\LE\Scene\Entity.cpp" />
+    <ClCompile Include="Source\LE\Scene\Scene.cpp" />
     <ClCompile Include="Source\LEpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\LE\Scene\Entity.cpp" />
-    <ClCompile Include="Source\LE\Scene\Scene.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLFramebuffer.cpp" />

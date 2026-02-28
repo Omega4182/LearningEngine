@@ -1,10 +1,11 @@
 #pragma once
 
+#include "LE/Core/Memory/SharedPtr.h"
 #include "VertexBufferLayout.h"
 
 namespace LE
 {
-	class VertexBuffer
+	class VertexBuffer : public SharedFromThis
 	{
 	public:
 
@@ -18,11 +19,11 @@ namespace LE
 		virtual inline const VertexBufferLayout& GetBufferLayout() const = 0;
 		virtual void SetLayout(const VertexBufferLayout& Layout) = 0;
 
-		static TSharedPtr<VertexBuffer> Create(uint32_t Size);
-		static TSharedPtr<VertexBuffer> Create(float* Vertices, uint32_t Size);
+		static SharedPtr<VertexBuffer> Create(uint32_t Size);
+		static SharedPtr<VertexBuffer> Create(float* Vertices, uint32_t Size);
 	};
 
-	class IndexBuffer
+	class IndexBuffer : public SharedFromThis
 	{
 	public:
 
@@ -33,6 +34,6 @@ namespace LE
 
 		virtual uint32_t GetCount() const = 0;
 
-		static TSharedPtr<IndexBuffer> Create(uint32_t* Indices, uint32_t Count);
+		static SharedPtr<IndexBuffer> Create(uint32_t* Indices, uint32_t Count);
 	};
 }

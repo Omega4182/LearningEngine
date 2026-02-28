@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LE/Core/Memory/SharedPtr.h"
 #include "LE/Renderer/VertexArray.h"
 
 namespace LE
@@ -14,15 +15,15 @@ namespace LE
 		virtual void Bind() const override;
 		virtual void Unbind() const override;
 
-		virtual void AddVertexBuffer(const TSharedPtr<VertexBuffer>& VertexBuffer) override;
-		virtual void SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer) override;
+		virtual void AddVertexBuffer(const SharedPtr<VertexBuffer>& VertexBuffer) override;
+		virtual void SetIndexBuffer(const SharedPtr<IndexBuffer>& IndexBuffer) override;
 
-		virtual inline const std::vector<TSharedPtr<VertexBuffer>>& GetVertexBuffers() const override
+		virtual inline const std::vector<SharedPtr<VertexBuffer>>& GetVertexBuffers() const override
 		{
 			return m_VertexBuffers;
 		}
 
-		virtual inline const TSharedPtr<IndexBuffer>& GetIndexBuffer() const override
+		virtual inline const SharedPtr<IndexBuffer>& GetIndexBuffer() const override
 		{
 			return m_IndexBuffer;
 		}
@@ -32,7 +33,7 @@ namespace LE
 		uint32_t m_RendererId;
 		uint32_t m_VertexBufferIndexOffset = 0;
 
-		std::vector<TSharedPtr<VertexBuffer>> m_VertexBuffers;
-		TSharedPtr<IndexBuffer> m_IndexBuffer;
+		std::vector<SharedPtr<VertexBuffer>> m_VertexBuffers;
+		SharedPtr<IndexBuffer> m_IndexBuffer;
 	};
 }

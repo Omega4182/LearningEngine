@@ -8,7 +8,7 @@
 
 namespace LE
 {
-	TSharedPtr<Framebuffer> Framebuffer::Create(const FramebufferSpecification& Spec)
+	SharedPtr<Framebuffer> Framebuffer::Create(const FramebufferSpecification& Spec)
 	{
 		switch (Renderer::GetAPI())
 		{

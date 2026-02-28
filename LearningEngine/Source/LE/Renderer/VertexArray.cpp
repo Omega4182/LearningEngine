@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	TSharedPtr<VertexArray> VertexArray::Create()
+	SharedPtr<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{

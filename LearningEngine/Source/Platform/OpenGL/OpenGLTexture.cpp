@@ -39,7 +39,7 @@ namespace LE
 			data = stbi_load(Path.c_str(), &width, &height, &channels, 0);
 		}
 
-		LE_CORE_ASSERT(data, "Failed to load image!");
+		LE_CORE_ASSERT(data != nullptr, "Failed to load image!");
 		m_Width = width;
 		m_Height = height;
 

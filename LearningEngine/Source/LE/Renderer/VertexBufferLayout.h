@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 namespace LE
 {
 	enum class ShaderDataType : uint32_t

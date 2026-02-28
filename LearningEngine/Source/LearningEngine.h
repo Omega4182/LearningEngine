@@ -15,6 +15,8 @@
 #include "LE/Core/KeyCodes.h"
 #include "LE/Core/MouseButtonCodes.h"
 
+#include "LE/Core/Memory/SharedPtr.h"
+
 #include "imgui.h"
 #include "LE/ImGui/ImGuiLayer.h"
 

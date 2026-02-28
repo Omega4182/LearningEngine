@@ -71,15 +71,6 @@ namespace LE
 	}
 
 	template<typename T>
-	using TSharedPtr = std::shared_ptr<T>;
-
-	template<typename T, typename ... Args>
-	constexpr TSharedPtr<T> MakeShared(Args&& ... args)
-	{
-		return std::make_shared<T>(std::forward<Args>(args)...);
-	}
-
-	template<typename T>
 	using TWeakPtr = std::weak_ptr<T>;
 
 	template<typename T, typename ... Args>

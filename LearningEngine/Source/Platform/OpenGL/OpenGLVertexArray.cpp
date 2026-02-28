@@ -54,7 +54,7 @@ namespace LE
 		return 0;
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const TSharedPtr<VertexBuffer>& VertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(const SharedPtr<VertexBuffer>& VertexBuffer)
 	{
 		LE_PROFILE_FUNCTION();
 
@@ -81,7 +81,7 @@ namespace LE
 		m_VertexBufferIndexOffset += layoutElementsCount;
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const TSharedPtr<IndexBuffer>& IndexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(const SharedPtr<IndexBuffer>& IndexBuffer)
 	{
 		LE_PROFILE_FUNCTION();
 

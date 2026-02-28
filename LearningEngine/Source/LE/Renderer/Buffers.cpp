@@ -7,7 +7,7 @@
 
 namespace LE
 {
-	TSharedPtr<VertexBuffer> VertexBuffer::Create(uint32_t Size)
+	SharedPtr<VertexBuffer> VertexBuffer::Create(uint32_t Size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -26,7 +26,7 @@ namespace LE
 		return nullptr;
 	}
 
-	TSharedPtr<VertexBuffer> VertexBuffer::Create(float* Vertices, uint32_t Size)
+	SharedPtr<VertexBuffer> VertexBuffer::Create(float* Vertices, uint32_t Size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -45,7 +45,7 @@ namespace LE
 		return nullptr;
 	}
 
-	TSharedPtr<IndexBuffer> IndexBuffer::Create(uint32_t* Indices, uint32_t Count)
+	SharedPtr<IndexBuffer> IndexBuffer::Create(uint32_t* Indices, uint32_t Count)
 	{
 		switch (Renderer::GetAPI())
 		{

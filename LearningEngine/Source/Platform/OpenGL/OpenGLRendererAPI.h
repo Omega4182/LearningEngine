@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LE/Renderer/RendererAPI.h"
+#include "LE/Core/Memory/SharedPtr.h"
 
 namespace LE
 {
@@ -18,6 +19,6 @@ namespace LE
 		virtual void SetClearColor(const glm::vec4& Color) override;
 		virtual void Clear() override;
 
-		virtual void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0) override;
+		virtual void DrawIndexed(const SharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0) override;
 	};
 }

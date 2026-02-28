@@ -10,6 +10,9 @@
     <Filter Include="Source\LE\Core">
       <UniqueIdentifier>{AE17ECD2-9AE5-DFD8-8379-50FF6FE6BB3D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\LE\Core\Memory">
+      <UniqueIdentifier>{569F3A2D-C20B-F627-8BFF-8D85F72A1890}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\LE\Debug">
       <UniqueIdentifier>{8C687B30-F8F3-E8F4-0105-6CE96D0F45F5}</UniqueIdentifier>
     </Filter>
@@ -21,6 +24,9 @@
     </Filter>
     <Filter Include="Source\LE\Renderer">
       <UniqueIdentifier>{FCF153E2-E8D5-1438-5136-0F8B3D39FFB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\LE\Scene">
+      <UniqueIdentifier>{33CB8931-9F56-F7F5-A867-7AEA147253F6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Platform">
       <UniqueIdentifier>{6A48A913-D6D3-16D8-DFE4-99CC4BEF72D8}</UniqueIdentifier>
@@ -87,6 +93,9 @@
     <ClInclude Include="Source\LE\Core\Log.h">
       <Filter>Source\LE\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Core\Memory\SharedPtr.h">
+      <Filter>Source\LE\Core\Memory</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Core\MouseButtonCodes.h">
       <Filter>Source\LE\Core</Filter>
     </ClInclude>
@@ -152,6 +161,15 @@
     </ClInclude>
     <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h">
       <Filter>Source\LE\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Scene\Components.h">
+      <Filter>Source\LE\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Scene\Entity.h">
+      <Filter>Source\LE\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\LE\Scene\Scene.h">
+      <Filter>Source\LE\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\LEpch.h">
       <Filter>Source</Filter>
@@ -1443,9 +1461,6 @@
     <ClInclude Include="ThirdParty\stb_image\stb_image.h">
       <Filter>ThirdParty\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LE\Scene\Scene.h" />
-    <ClInclude Include="Source\LE\Scene\Components.h" />
-    <ClInclude Include="Source\LE\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\LE\Core\Application.cpp">
@@ -1505,6 +1520,12 @@
     <ClCompile Include="Source\LE\Renderer\VertexBufferLayout.cpp">
       <Filter>Source\LE\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\LE\Scene\Entity.cpp">
+      <Filter>Source\LE\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LE\Scene\Scene.cpp">
+      <Filter>Source\LE\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Source\LEpch.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -1538,7 +1559,5 @@
     <ClCompile Include="ThirdParty\stb_image\stb_image.cpp">
       <Filter>ThirdParty\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LE\Scene\Scene.cpp" />
-    <ClCompile Include="Source\LE\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

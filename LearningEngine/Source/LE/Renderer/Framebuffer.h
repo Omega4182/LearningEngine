@@ -1,6 +1,6 @@
 #pragma once
 
-#include "LE/Core/Core.h"
+#include "LE/Core/Memory/SharedPtr.h"
 
 namespace LE
 {
@@ -12,7 +12,7 @@ namespace LE
 		bool bSwapChainTarget = false;
 	};
 
-	class Framebuffer
+	class Framebuffer : public SharedFromThis
 	{
 	public:
 		virtual ~Framebuffer() = default;
@@ -25,6 +25,6 @@ namespace LE
 		virtual uint32_t GetColorAttachmentRendererId() const = 0;
 		virtual const FramebufferSpecification& GetSpecification() const = 0;
 
-		static TSharedPtr<Framebuffer> Create(const FramebufferSpecification& Spec);
+		static SharedPtr<Framebuffer> Create(const FramebufferSpecification& Spec);
 	};
 }

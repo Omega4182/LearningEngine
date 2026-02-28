@@ -20,12 +20,12 @@ namespace LE
 
 	private:
 
-		TSharedPtr<VertexArray> m_VertexArray;
-		TSharedPtr<Shader> m_Shader;
-		TSharedPtr<Texture2D> m_Texture;
-		TSharedPtr<Framebuffer> m_Framebuffer;
+		SharedPtr<VertexArray> m_VertexArray;
+		SharedPtr<Shader> m_Shader;
+		SharedPtr<Texture2D> m_Texture;
+		SharedPtr<Framebuffer> m_Framebuffer;
 
-		TSharedPtr<Scene> m_ActiveScene;
+		SharedPtr<Scene> m_ActiveScene;
 
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;

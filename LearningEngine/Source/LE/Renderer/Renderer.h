@@ -1,12 +1,13 @@
 #pragma once
 
 #include "LE/Renderer/RenderCommand.h"
-#include "LE/Renderer/RenderCommand.h"
 
 #include "LE/Renderer/VertexArray.h"
 #include "LE/Renderer/OrthographicCamera.h"
 
 #include "LE/Renderer/Shader.h"
+
+#include "LE/Core/Memory/SharedPtr.h"
 
 #include <glm/glm.hpp>
 
@@ -24,7 +25,7 @@ namespace LE
 		static void BeginScene(const OrthographicCamera& Camera);
 		static void EndScene();
 
-		static void Submit(const TSharedPtr<Shader>& Shader, const TSharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform);
+		static void Submit(const SharedPtr<Shader>& Shader, const SharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform);
 
 		inline static RendererAPI::API GetAPI()
 		{

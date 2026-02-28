@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LE/Renderer/VertexArray.h"
+#include "LE/Core/Memory/SharedPtr.h"
 #include <glm/glm.hpp>
 
 namespace LE
@@ -25,7 +26,7 @@ namespace LE
 		virtual void SetClearColor(const glm::vec4& Color) = 0;
 		virtual void Clear() = 0;
 
-		virtual void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0) = 0;
+		virtual void DrawIndexed(const SharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0) = 0;
 
 		inline static API GetAPI() { return s_API; }
 		static TUniquePtr<RendererAPI> Create();

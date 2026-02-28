@@ -34,7 +34,7 @@ namespace LE
 
 	}
 
-	void Renderer::Submit(const TSharedPtr<Shader>& Shader, const TSharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform)
+	void Renderer::Submit(const SharedPtr<Shader>& Shader, const SharedPtr<VertexArray>& VertexArray, const glm::mat4& Transform)
 	{
 		Shader->Bind();
 		Shader->SetMat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);

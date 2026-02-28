@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LE/Core/Memory/SharedPtr.h"
 #include "RendererAPI.h"
 
 #include <glm/glm.hpp>
@@ -30,7 +31,7 @@ namespace LE
 			s_RenderAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const TSharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0)
+		inline static void DrawIndexed(const SharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0)
 		{
 			s_RenderAPI->DrawIndexed(VertexArray, IndexCount);
 		}

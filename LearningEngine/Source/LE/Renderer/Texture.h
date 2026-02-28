@@ -1,11 +1,11 @@
 #pragma once
 
-#include "LE/Core/Core.h"
+#include "LE/Core/Memory/SharedPtr.h"
 #include <string>
 
 namespace LE
 {
-	class Texture
+	class Texture : public SharedFromThis
 	{
 	public:
 
@@ -28,7 +28,7 @@ namespace LE
 
 		virtual ~Texture2D() = default;
 
-		static TSharedPtr<Texture2D> Create(uint32_t Width, uint32_t Height);
-		static TSharedPtr<Texture2D> Create(const std::string& Path);
+		static SharedPtr<Texture2D> Create(uint32_t Width, uint32_t Height);
+		static SharedPtr<Texture2D> Create(const std::string& Path);
 	};
 }
