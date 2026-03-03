@@ -3,5 +3,5 @@
 
 namespace LE
 {
-	TUniquePtr<RendererAPI> RenderCommand::s_RenderAPI = RendererAPI::Create();
+	UniquePtr<RendererAPI> RenderCommand::s_RenderAPI = RendererAPI::Create();
 }

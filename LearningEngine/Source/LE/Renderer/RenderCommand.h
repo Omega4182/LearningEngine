@@ -1,5 +1,6 @@
 #pragma once
 
+#include "LE/Core/Memory/UniquePtr.h"
 #include "LE/Core/Memory/SharedPtr.h"
 #include "RendererAPI.h"
 
@@ -38,6 +39,6 @@ namespace LE
 
 	private:
 
-		static TUniquePtr<RendererAPI> s_RenderAPI;
+		static UniquePtr<RendererAPI> s_RenderAPI;
 	};
 }

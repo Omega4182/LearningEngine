@@ -3,7 +3,7 @@
 
 #include "LEpch.h"
 
-#include "LE/Core/Core.h"
+#include "LE/Core/Memory/UniquePtr.h"
 #include "LE/Events/Event.h"
 
 namespace LE
@@ -37,6 +37,6 @@ namespace LE
 
 		inline virtual void* GetNativeWindow() const = 0;
 
-		static TUniquePtr<Window> Create(const WindowProps& props = WindowProps());
+		static UniquePtr<Window> Create(const WindowProps& props = WindowProps());
 	};
 }

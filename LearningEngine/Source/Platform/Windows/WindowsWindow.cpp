@@ -19,7 +19,7 @@ namespace LE
 		LE_CORE_ASSERT(false, "");
 	}
 
-	TUniquePtr<Window> Window::Create(const WindowProps& Props)
+	UniquePtr<Window> Window::Create(const WindowProps& Props)
 	{
 		return MakeUnique<WindowsWindow>(Props);
 	}

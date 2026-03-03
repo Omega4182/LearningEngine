@@ -96,6 +96,9 @@
     <ClInclude Include="Source\LE\Core\Memory\SharedPtr.h">
       <Filter>Source\LE\Core\Memory</Filter>
     </ClInclude>
+    <ClInclude Include="Source\LE\Core\Memory\UniquePtr.h">
+      <Filter>Source\LE\Core\Memory</Filter>
+    </ClInclude>
     <ClInclude Include="Source\LE\Core\MouseButtonCodes.h">
       <Filter>Source\LE\Core</Filter>
     </ClInclude>

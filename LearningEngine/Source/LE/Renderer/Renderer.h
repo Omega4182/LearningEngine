@@ -7,6 +7,7 @@
 
 #include "LE/Renderer/Shader.h"
 
+#include "LE/Core/Memory/UniquePtr.h"
 #include "LE/Core/Memory/SharedPtr.h"
 
 #include <glm/glm.hpp>
@@ -39,6 +40,6 @@ namespace LE
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static TUniquePtr<SceneData> s_SceneData;
+		static UniquePtr<SceneData> s_SceneData;
 	};
 }

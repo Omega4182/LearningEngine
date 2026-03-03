@@ -3,6 +3,7 @@
 
 #include "LE/Core/Window.h"
 #include "LE/Renderer/GraphicsContext.h"
+#include "LE/Core/Memory/UniquePtr.h"
 #include <GLFW/glfw3.h>
 
 namespace LE
@@ -50,7 +51,7 @@ namespace LE
 	private:
 
 		GLFWwindow* m_Window;
-		TUniquePtr<GraphicsContext> m_Context;
+		UniquePtr<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

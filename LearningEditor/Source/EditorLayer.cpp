@@ -5,15 +5,15 @@
 
 namespace LE
 {
-    class TestShared : public SharedFromThis
+    class TestUnique
     {
     public:
-        TestShared()
+        TestUnique()
         {
             LE_INFO("Shared created");
         }
 
-        virtual ~TestShared()
+        virtual ~TestUnique()
         {
             LE_INFO("Shared destroyed");
         }
@@ -22,15 +22,15 @@ namespace LE
         uint32_t some_info = 0;
     };
 
-    class TestSharedChild : public TestShared
+    class TestUniqueChild : public TestUnique
     {
     public:
-        TestSharedChild()
+        TestUniqueChild()
         {
             LE_INFO("Shared Child created");
         }
 
-        virtual ~TestSharedChild()
+        virtual ~TestUniqueChild()
         {
             LE_INFO("Shared Child destroyed");
         }
@@ -59,11 +59,6 @@ namespace LE
 
         Entity SquareEntity = m_ActiveScene->CreateEntity();
         SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.f, 1.f, 0.f, 1.f));
-
-        //SharedPtr<TestShared> NewTestShared = MakeShared<TestShared>();
-        //SharedPtr<TestShared> NewTestShared1 = NewTestShared;
-
-        //NewTestShared = SharedPtr<TestShared>(new TestShared());
     }
 
     void EditorLayer::OnDetach()

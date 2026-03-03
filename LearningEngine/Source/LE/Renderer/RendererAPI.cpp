@@ -9,7 +9,7 @@ namespace LE
 {
 	RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
 
-	TUniquePtr<RendererAPI> RendererAPI::Create()
+	UniquePtr<RendererAPI> RendererAPI::Create()
 	{
 		switch (Renderer::GetAPI())
 		{

@@ -44,8 +44,16 @@ namespace LE
 		}
 
 		explicit SharedPtr(ObjectType* NewPtr) noexcept
-			: m_Ptr(NewPtr)
 		{
+			m_Ptr = NewPtr;
+			IncrementRef();
+		}
+
+		template<typename U>
+		requires std::is_convertible_v<U*, ObjectType*>
+		explicit SharedPtr(U* NewPtr) noexcept
+		{
+			m_Ptr = static_cast<ObjectType*>(NewPtr);
 			IncrementRef();
 		}
 
@@ -84,19 +92,25 @@ namespace LE
 
 		SharedPtr& operator =(std::nullptr_t Nullptr) noexcept
 		{
-			DecrementRef();
+			if (m_Ptr != nullptr)
+			{
+				DecrementRef();
 
-			m_Ptr = nullptr;
+				m_Ptr = nullptr;
+			}
 
 			return *this;
 		}
 
 		SharedPtr& operator =(const SharedPtr<ObjectType>& Other) noexcept
 		{
-			DecrementRef();
-			Other.IncrementRef();
+			if (*this != Other)
+			{
+				DecrementRef();
+				Other.IncrementRef();
 
-			m_Ptr = Other.m_Ptr;
+				m_Ptr = Other.m_Ptr;
+			}
 
 			return *this;
 		}
@@ -105,20 +119,26 @@ namespace LE
 		requires std::is_convertible_v<U*, ObjectType*>
 		SharedPtr& operator =(const SharedPtr<U>& Other) noexcept
 		{
-			DecrementRef();
-			Other.IncrementRef();
+			if (*this != Other)
+			{
+				DecrementRef();
+				Other.IncrementRef();
 
-			m_Ptr = static_cast<ObjectType*>(Other.m_Ptr);
+				m_Ptr = static_cast<ObjectType*>(Other.m_Ptr);
+			}
 
 			return *this;
 		}
 
 		SharedPtr& operator =(SharedPtr<ObjectType>&& Other) noexcept
 		{
-			DecrementRef();
+			if (*this != Other)
+			{
+				DecrementRef();
 
-			m_Ptr = Other.m_Ptr;
-			Other.m_Ptr = nullptr;
+				m_Ptr = Other.m_Ptr;
+				Other.m_Ptr = nullptr;
+			}
 
 			return *this;
 		}
@@ -127,39 +147,42 @@ namespace LE
 		requires std::is_convertible_v<U*, ObjectType*>
 		SharedPtr& operator =(SharedPtr<U>&& Other) noexcept
 		{
-			DecrementRef();
+			if (*this != Other)
+			{
+				DecrementRef();
 
-			m_Ptr = static_cast<ObjectType*>(Other.m_Ptr);
-			Other.m_Ptr = nullptr;
+				m_Ptr = static_cast<ObjectType*>(Other.m_Ptr);
+				Other.m_Ptr = nullptr;
+			}
 
 			return *this;
 		}
 
-		bool operator ==(const SharedPtr<ObjectType>& Other) noexcept
+		bool operator ==(const SharedPtr<ObjectType>& Other) const noexcept
 		{
 			return m_Ptr == Other.m_Ptr;
 		}
 
-		bool operator !=(const SharedPtr<ObjectType>& Other) noexcept
+		bool operator !=(const SharedPtr<ObjectType>& Other) const noexcept
 		{
 			return !(*this == Other);
 		}
 
-		ObjectType* operator->() { return m_Ptr; }
-		ObjectType* operator->() const { return m_Ptr; }
+		ObjectType* operator->() noexcept { return m_Ptr; }
+		ObjectType* operator->() const noexcept { return m_Ptr; }
 
-		ObjectType& operator*() { return *m_Ptr; }
-		ObjectType& operator*() const { return *m_Ptr; }
+		ObjectType& operator*() noexcept { return *m_Ptr; }
+		ObjectType& operator*() const noexcept { return *m_Ptr; }
 
-		ObjectType* Get() { return m_Ptr; }
-		ObjectType* Get() const { return m_Ptr; }
+		ObjectType* Get() noexcept { return m_Ptr; }
+		ObjectType* Get() const noexcept { return m_Ptr; }
 
-		bool IsValid() const { return m_Ptr != nullptr; }
+		[[nodiscard]] bool IsValid() const noexcept { return m_Ptr != nullptr; }
 
-		void Reset() { DecrementRef(); }
+		void Reset() noexcept { DecrementRef(); }
 
 	private:
-		void IncrementRef() const
+		void IncrementRef() const noexcept
 		{
 			if (IsValid())
 			{
@@ -167,7 +190,7 @@ namespace LE
 			}
 		}
 
-		void DecrementRef() const
+		void DecrementRef() const noexcept
 		{
 			if (IsValid())
 			{

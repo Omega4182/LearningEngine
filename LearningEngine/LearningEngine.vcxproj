@@ -159,6 +159,7 @@
     <ClInclude Include="Source\LE\Core\LayerStack.h" />
     <ClInclude Include="Source\LE\Core\Log.h" />
     <ClInclude Include="Source\LE\Core\Memory\SharedPtr.h" />
+    <ClInclude Include="Source\LE\Core\Memory\UniquePtr.h" />
     <ClInclude Include="Source\LE\Core\MouseButtonCodes.h" />
     <ClInclude Include="Source\LE\Core\Timestep.h" />
     <ClInclude Include="Source\LE\Core\Window.h" />

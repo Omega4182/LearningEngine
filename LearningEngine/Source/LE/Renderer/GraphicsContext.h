@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LE/Core/Memory/UniquePtr.h"
+
 namespace LE
 {
 	class GraphicsContext
@@ -10,6 +12,6 @@ namespace LE
 		virtual void Init() = 0;
 		virtual void SwapBuffers() = 0;
 
-		static TUniquePtr<GraphicsContext> Create(void* Window);
+		static UniquePtr<GraphicsContext> Create(void* Window);
 	};
 }

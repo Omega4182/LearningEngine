@@ -134,7 +134,7 @@ namespace LE
 
 	void Renderer2D::Flush()
 	{
-		uint32_t DataSize = reinterpret_cast<uint8_t*>(s_Data.QuadVertexBufferPtr) - reinterpret_cast<uint8_t*>(s_Data.QuadVertexBufferBase);
+		uint32_t DataSize = static_cast<uint32_t>(reinterpret_cast<uint8_t*>(s_Data.QuadVertexBufferPtr) - reinterpret_cast<uint8_t*>(s_Data.QuadVertexBufferBase));
 		s_Data.VertexBuffer->SetData(s_Data.QuadVertexBufferBase, DataSize);
 
 		for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)

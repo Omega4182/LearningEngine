@@ -4,7 +4,7 @@
 
 namespace LE
 {
-	TUniquePtr<Renderer::SceneData> Renderer::s_SceneData = MakeUnique<Renderer::SceneData>();
+	UniquePtr<Renderer::SceneData> Renderer::s_SceneData = MakeUnique<Renderer::SceneData>();
 
 	void Renderer::Init()
 	{

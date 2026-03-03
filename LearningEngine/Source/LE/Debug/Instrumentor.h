@@ -163,11 +163,11 @@ namespace LE
 			long long start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimepoint).time_since_epoch().count();
 			long long end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
 
-			uint32_t threadId = std::hash<std::thread::id>{}(std::this_thread::get_id());
+			size_t threadId = std::hash<std::thread::id>{}(std::this_thread::get_id());
 
 			m_ProfileResult.Start = start;
 			m_ProfileResult.End = end;
-			m_ProfileResult.ThreadId = threadId;
+			m_ProfileResult.ThreadId = static_cast<uint32_t>(threadId);
 
 			Instrumentor::Get().WriteProfile(m_ProfileResult);
 

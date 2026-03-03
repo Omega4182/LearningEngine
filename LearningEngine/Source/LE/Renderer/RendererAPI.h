@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LE/Renderer/VertexArray.h"
+#include "LE/Core/Memory/UniquePtr.h"
 #include "LE/Core/Memory/SharedPtr.h"
 #include <glm/glm.hpp>
 
@@ -29,7 +30,7 @@ namespace LE
 		virtual void DrawIndexed(const SharedPtr<VertexArray>& VertexArray, uint32_t IndexCount = 0) = 0;
 
 		inline static API GetAPI() { return s_API; }
-		static TUniquePtr<RendererAPI> Create();
+		static UniquePtr<RendererAPI> Create();
 
 	private:
 

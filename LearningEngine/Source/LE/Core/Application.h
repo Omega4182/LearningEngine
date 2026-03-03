@@ -2,6 +2,7 @@
 #pragma once
 
 #include "LE/Core/Core.h"
+#include "LE/Core/Memory/UniquePtr.h"
 #include "LE/Core/Window.h"
 #include "LE/Events/ApplicationEvent.h"
 #include "LE/Core/LayerStack.h"
@@ -48,7 +49,7 @@ namespace LE
 
 		static Application* s_Instance;
 
-		TUniquePtr<Window> m_Window;
+		UniquePtr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool bIsRunning = true;

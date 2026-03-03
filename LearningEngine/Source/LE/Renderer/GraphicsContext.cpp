@@ -6,7 +6,7 @@
 
 namespace LE
 {
-	TUniquePtr<GraphicsContext> GraphicsContext::Create(void* Window)
+	UniquePtr<GraphicsContext> GraphicsContext::Create(void* Window)
 	{
 		switch (Renderer::GetAPI())
 		{
