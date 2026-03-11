@@ -18,12 +18,37 @@ namespace LE
 
 	void Scene::OnUpdate(Timestep DeltaTime)
 	{
-		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto& entity : group)
+		// Finding camera to render
+		Camera* MainCamera = nullptr;
+		glm::mat4* CameraTransform = nullptr;
 		{
-			auto [Transform, SpriteRenderer] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+			auto View = m_Registry.view<TransformComponent, CameraComponent>();
+			for (auto Entity : View)
+			{
+				const auto& [Transform, Camera] = View.get<TransformComponent, CameraComponent>(Entity);
 
-			Renderer2D::DrawQuad(Transform, SpriteRenderer.Color);
+				if (Camera.bPrimary)
+				{
+					MainCamera = &Camera.Camera;
+					CameraTransform = &Transform.Transform;
+					break;
+				}
+			}
+		}
+
+		if (MainCamera != nullptr)
+		{
+			Renderer2D::BeginScene(*MainCamera, *CameraTransform);
+
+			auto Group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+			for (auto Entity : Group)
+			{
+				const auto& [Transform, SpriteRenderer] = Group.get<TransformComponent, SpriteRendererComponent>(Entity);
+
+				Renderer2D::DrawQuad(Transform, SpriteRenderer.Color);
+			}
+
+			Renderer2D::EndScene();
 		}
 	}
 
@@ -35,5 +60,22 @@ namespace LE
 		Tag.Tag = Name.empty() ? "Entity" : Name;
 
 		return NewEntity;
+	}
+
+	void Scene::OnViewportResize(uint32_t Width, uint32_t Height)
+	{
+		m_ViewportWidth = Width;
+		m_ViewportHeight = Height;
+
+		auto View = m_Registry.view<CameraComponent>();
+		for (auto Entity : View)
+		{
+			auto& CameraComp = View.get<CameraComponent>(Entity);
+
+			if (CameraComp.bFixedAspectRatio == false)
+			{
+				CameraComp.Camera.SetViewportSize(Width, Height);
+			}
+		}
 	}
 }

@@ -182,11 +182,13 @@
     <ClInclude Include="Source\LE\Renderer\Texture.h" />
     <ClInclude Include="Source\LE\Renderer\VertexArray.h" />
     <ClInclude Include="Source\LE\Renderer\VertexBufferLayout.h" />
+    <ClInclude Include="Source\LE\Renderer\Camera.h" />
     <ClInclude Include="Source\LE\Scene\Components.h" />
     <ClInclude Include="Source\LE\Scene\Entity.h" />
     <ClInclude Include="Source\LE\Scene\Scene.h" />
     <ClInclude Include="Source\LEpch.h" />
     <ClInclude Include="Source\LearningEngine.h" />
+    <ClInclude Include="Source\LE\Scene\SceneCamera.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLBuffers.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="Source\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -641,6 +643,7 @@
     <ClCompile Include="Source\LEpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\LE\Scene\SceneCamera.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLBuffers.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="Source\Platform\OpenGL\OpenGLFramebuffer.cpp" />

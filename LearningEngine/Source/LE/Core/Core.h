@@ -60,17 +60,5 @@
 
 namespace LE
 {
-// ------
-	template<typename T>
-	using TWeakPtr = std::weak_ptr<T>;
-
-	template<typename T, typename ... Args>
-	constexpr TWeakPtr<T> MakeWeak(Args&& ... args)
-	{
-		return std::weak_ptr<T>(std::forward<Args>(args)...);
-	}
-
-// ------
-
 	enum {INDEX_NONE = -1 };
 }

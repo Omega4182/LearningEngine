@@ -27,6 +27,8 @@ namespace LE
 
 		SharedPtr<Scene> m_ActiveScene;
 
+		Entity CameraEntity;
+
 		bool m_ViewportFocused = false;
 		bool m_ViewportHovered = false;
 		OrthographicCameraController m_CameraController;

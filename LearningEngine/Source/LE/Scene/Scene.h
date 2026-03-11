@@ -21,9 +21,13 @@ namespace LE
 
 		Entity CreateEntity(const std::string& Name = std::string());
 
-	private:
+		void OnViewportResize(uint32_t Width, uint32_t Height);
 
+	private:
 		entt::registry m_Registry;
+
+		uint32_t m_ViewportWidth = 0;
+		uint32_t m_ViewportHeight = 0;
 
 		friend Entity;
 	};

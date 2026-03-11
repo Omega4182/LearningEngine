@@ -2,6 +2,8 @@
 
 #include <glm/glm.hpp>
 
+#include "LE/Scene/SceneCamera.h"
+
 namespace LE
 {
 	struct TagComponent
@@ -35,5 +37,17 @@ namespace LE
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		SpriteRendererComponent(const glm::vec4& NewColor)
 			: Color(NewColor) {}
+	};
+
+	struct CameraComponent
+	{
+		SceneCamera Camera;
+		bool bPrimary = true; // TODO: To be moved somewhere (PlayerController or scene)
+		bool bFixedAspectRatio = false;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& Projection)
+			: Camera(Projection) { }
 	};
 }

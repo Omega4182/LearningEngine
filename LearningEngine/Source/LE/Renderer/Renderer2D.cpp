@@ -122,6 +122,16 @@ namespace LE
 		ResetBatchData();
 	}
 
+	void Renderer2D::BeginScene(const Camera& Camera, const glm::mat4& CameraTransform)
+	{
+		glm::mat4 ViewProj = Camera.GetProjection() * glm::inverse(CameraTransform);
+
+		s_Data.TextureShader->Bind();
+		s_Data.TextureShader->SetMat4("u_ViewProjection", ViewProj);
+
+		ResetBatchData();
+	}
+
 	void Renderer2D::EndScene()
 	{
 		if (s_Data.QuadIndexCount == 0)

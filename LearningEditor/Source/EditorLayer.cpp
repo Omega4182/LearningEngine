@@ -59,6 +59,9 @@ namespace LE
 
         Entity SquareEntity = m_ActiveScene->CreateEntity();
         SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4(0.f, 1.f, 0.f, 1.f));
+
+        CameraEntity = m_ActiveScene->CreateEntity("Camera");
+        CameraEntity.AddComponent<CameraComponent>();
     }
 
     void EditorLayer::OnDetach()
@@ -78,6 +81,8 @@ namespace LE
             {
                 m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
                 m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+
+                m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
             }
         }
 
@@ -92,28 +97,7 @@ namespace LE
         RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.f });
         RenderCommand::Clear();
 
-        Renderer2D::BeginScene(m_CameraController.GetCamera());
         m_ActiveScene->OnUpdate(DeltaTime);
-        //Renderer2D::DrawRotatedQuad(glm::vec3(0.f, 0.f, 1.f), glm::vec2(1.f, 1.f), glm::radians(45.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
-
-        /*for (uint32_t i = 0; i < 100; i++)
-        {
-            uint32_t row = i / 10;
-            uint32_t column = i % 10;
-
-            Renderer2D::DrawQuad(glm::vec3(row * 2.f, column * 2.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(row / 10.f, column / 10.f, row / 10.f, 1.f));
-        }*/
-        /*Renderer2D::DrawQuad(glm::vec3(-0.5f, -0.5f, 0.f), glm::vec2(1.f, 1.f), m_Texture, 20.f, glm::vec4(1.f, 1.f, 1.f, 1.f));
-        Renderer2D::DrawQuad(glm::vec3(0.f, 0.f, 0.f), glm::vec2(1.f, 1.f), glm::vec4(1.f, 0.f, 0.f, 1.f));
-
-        static float TestRot = 0.f;
-        TestRot += DeltaTime * 20.f;
-        Renderer2D::DrawRotatedQuad(glm::vec3(1.2f, 1.2f, 0.f), glm::vec2(1.f, 1.f), TestRot, glm::vec4(0.5f, 0.5f, 1.f, 1.f));
-        Renderer2D::DrawRotatedQuad(glm::vec3(-1.2f, -1.2f, 0.f), glm::vec2(1.f, 1.f), TestRot, glm::vec4(0.5f, 0.5f, 1.f, 1.f));
-
-        Renderer2D::DrawRotatedQuad(glm::vec3(0.0f, 0.0f, 0.f), glm::vec2(10.f, 10.f), 45.f, m_Texture, 10.f, glm::vec4(1.f, 1.f, 1.f, 1.f));*/
-
-        Renderer2D::EndScene();
 
         m_Framebuffer->Unbind();
     }

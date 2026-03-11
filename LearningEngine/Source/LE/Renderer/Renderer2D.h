@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LE/Renderer/OrthographicCamera.h"
+#include "LE/Renderer/Camera.h"
 #include "LE/Renderer/Texture.h"
 
 #include "LE/Core/Memory/SharedPtr.h"
@@ -19,7 +20,8 @@ namespace LE
 		static void Init();
 		static void Shutdown();
 
-		static void BeginScene(const OrthographicCamera& Camera);
+		static void BeginScene(const OrthographicCamera& Camera); // TODO: Remove
+		static void BeginScene(const Camera& Camera, const glm::mat4& CameraTransform);
 		static void EndScene();
 		static void Flush();
 
